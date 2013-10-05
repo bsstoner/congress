@@ -1,4 +1,46 @@
 <!doctype html>
 <html>
-  <head></head>
+    <head>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js"></script>
+    </head>
+    <body>
+        <header></header>
+        <section>
+            <section id="chart">
+            </section>
+        </section>
+    </body>
+    <script>
+
+        (function() {
+                d3.json("../data/historical-national.json", function (data) {
+                    var colorScale = d3.scale.quantile()
+                                              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+                                              .range(colors);
+                    var margin = { top: 50, right: 0, bottom: 100, left: 30 },
+                            width = 960 - margin.left - margin.right,
+                            height = 430 - margin.top - margin.bottom;
+                            colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0"];
+                    var svg = d3.select("#chart").append("svg")
+                                          .attr("width", width + margin.left + margin.right)
+                                          .attr("height", height + margin.top + margin.bottom)
+                                          .append("g")
+                                          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                    var heatMap = svg.selectAll(".hour")
+                                              .data(data)
+                                              .enter().append("rect")
+                                              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
+                                              .attr("y", function(d) { return (d.day - 1) * gridSize; })
+                                              .attr("rx", 4)
+                                              .attr("ry", 4)
+                                              .attr("class", "hour bordered")
+                                              .attr("width", gridSize)
+                                              .attr("height", gridSize)
+                                              .style("fill", colors[0]);
+                    heatMap.transition().duration(1000)
+                                        .style("fill", function(d) { return colorScale(d.value); });
+                });
+
+        })();
+    </script>
 </html>
