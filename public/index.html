@@ -13,10 +13,21 @@
     <script>
 
         (function() {
-                d3.json("../data/historical-national.json", function (data) {
-                    var colorScale = d3.scale.quantile()
-                                              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
-                                              .range(colors);
+                //d3.json("../data/historical-national.json", function (data) {
+                    d3.csv("../data/historical.csv", function(d) {
+                        return {
+                            year: new Date(+d.Year, 0, 1),
+                            white: d.white,
+                            black: d.Black,
+                            indian: d.American_indian,
+                            asian: d.Asian,
+                            hispanic: d.Hispanic
+                        };
+                        }, function(error, data){
+                            console.log(data);
+                            var percentageList = [];
+
+
                     var margin = { top: 50, right: 0, bottom: 100, left: 30 },
                             width = 960 - margin.left - margin.right,
                             height = 430 - margin.top - margin.bottom;
@@ -26,6 +37,7 @@
                                           .attr("height", height + margin.top + margin.bottom)
                                           .append("g")
                                           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
                     var heatMap = svg.selectAll(".hour")
                                               .data(data)
                                               .enter().append("rect")
@@ -37,10 +49,9 @@
                                               .attr("width", gridSize)
                                               .attr("height", gridSize)
                                               .style("fill", colors[0]);
-                    heatMap.transition().duration(1000)
-                                        .style("fill", function(d) { return colorScale(d.value); });
-                });
-
+                /*    heatMap.transition().duration(1000)
+                                        .style("fill", function(d) { return colorScale(d.value); });*/
+            });
         })();
     </script>
 </html>
