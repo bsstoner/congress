@@ -4,8 +4,9 @@
   "dependencies": {
     "async": "*",
     "js-yaml": "*",
-    "js-dom": "*",
-    "request": "*"
+    "jsdom": "*",
+    "request": "*",
+    "underscore": "*"
   },
   "repository": "git://github.com/bsstoner/congress",
   "engines": { "node": ">=0.8.x" }

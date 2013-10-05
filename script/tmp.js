@@ -1,19 +1,49 @@
-var input = require('../data/legislators-current.json')
+var input = require('../data/legislators-historical')
+  , fs = require('fs')
   , async = require('async')
-  , jsdom = require('jsdom');
+  , jsdom = require('jsdom')
+  , request = require('request')
 
-async.forEachSeries(input, function(record){
-  if(record.id.wikipedia){
+  , utils = require('./utils')
+  , counter = 0;
+
+var downloadImage = function(uri, filename){
+  request.head(uri, function(err, res, body){
+    console.log('content-type:', res.headers['content-type']);
+    console.log('content-length:', res.headers['content-length']);
+
+    request(uri).pipe(fs.createWriteStream(filename));
+  });
+};
+
+var hasWikipediaLink = function(record){
+  return record.id && record.id.wikipedia;
+}
+
+async.forEachSeries(input, function(record,fn){
+  counter++;
+  console.log("starting ", counter, " out of ",input.length);
+
+  if(utils.isSenator(record) && hasWikipediaLink(record)){
     var wUrl = 'https://en.wikipedia.org/wiki/' + record.id.wikipedia.replace(' ','_');
+    jsdom.env(wUrl,['http://code.jquery.com/jquery-latest.min.js'],function(err,window){
+      var $ = window.jQuery
+        , rightImages = $('.infobox.vcard img')
+        , profileImage = rightImages && rightImages.length && rightImages[0]
+        , imageSrc = profileImage && $(profileImage).attr('src')
+        , imageUrl = imageSrc && imageSrc.replace('/','http:/')
+        , bestId = utils.getBestId(record);
 
-
-    jsdom.env({
-      html: 
-    }, function(err,window){
-
+      if(imageUrl){
+        downloadImage(imageUrl, '../public/images/senate/' + bestId + '.jpg');
+        setTimeout(fn,7000);
+      } else {
+        console.log("missing image url",record.name);
+        fn();
+      }
     });
   } else {
-    console.log("No Wikipedia",record.name);
+    fn();
   }
 });
 
