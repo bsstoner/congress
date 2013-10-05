@@ -1,0 +1,13 @@
+{
+  "name": "congress",
+  "version": "0.0.1",
+  "dependencies": {
+    "async": "*",
+    "js-yaml": "*",
+    "js-dom": "*",
+    "request": "*"
+  },
+  "repository": "git://github.com/bsstoner/congress",
+  "engines": { "node": ">=0.8.x" }
+}
+
