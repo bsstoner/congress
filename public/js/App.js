@@ -17,11 +17,13 @@ var app = {
     });
 
     this.scaleToWindow();
-    this.setYear(1800);
+    this.setYear(1900);
 
     // event handlers:
     $(window).resize(_.bind(this._onWindowResized,this));
     this.scrollbar.on('changed',_.bind(this._onScrollbarChanged,this));
+
+    this.scrollbar._startStop();
   },
 
   scaleToWindow: function(){
@@ -46,15 +48,6 @@ var app = {
     this.senate.setYear(year);
     this.population.setYear(year);
     this.scrollbar.setYear(year);
-
-    var self = this;
-    var int = setInterval(function () { 
-      year += 1; 
-      self.senate.setYear(year);
-      self.population.setYear(year);
-      self.scrollbar.setYear(year);
-      if (year > 2010) window.clearInterval(int);      
-    } , 500);
   },
 
   _onScrollbarChanged: function(year){

@@ -6,8 +6,8 @@ var Faces = function(ops){
 
 Faces.prototype = {
 
-  numFaces: 50,
-  marginPercent: 0.10,
+  numFaces: 100,
+  marginPercent: 0.00,
 
   imgPrefix: 'images/senate/',
   imgExtension: '.jpg',
