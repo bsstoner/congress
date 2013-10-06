@@ -1,0 +1,131 @@
+
+<html>
+<head>
+<script src="jquery.min.js"></script>
+<script src="d3.js"></script>
+<style type="text/css">
+body{font-family: Arial, sans-serif;font-size:10px;}
+.axis path,.axis line {fill: none;stroke:#b6b6b6;shape-rendering: crispEdges;}
+.tick text{fill:#999;}
+text.label{font-size:12px;font-weight:bold;cursor:pointer;}
+text.value{font-size:12px;font-weight:bold;}
+percentage.value{font-size:12px;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<script type="text/javascript">
+function truncate(str, maxLength, suffix) {
+    if(str.length > maxLength) {
+        str = str.substring(0, maxLength + 1);
+        str = str.substring(0, Math.min(str.length, str.lastIndexOf(" ")));
+        str = str + suffix;
+    }
+    return str;
+}
+
+var margin = {top: 20, right: 220, bottom: 0, left: 25},
+    width = 960,
+    height = 800;
+
+var start_year = 1950,
+    end_year = 2010;
+
+var c = d3.scale.category20();
+
+var x = d3.scale.linear()
+    .range([0, width]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("top");
+
+var formatYears = d3.format("0000");
+xAxis.tickFormat(formatYears);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .style("margin-left", margin.left + "px")
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+/*
+var data = [ [1850, 9.7], [1860, 13.2], [1870, 14.4], [1880, 13.3], [1890, 14.8],
+                    [1900, 13.6], [1910, 14.7], [1920, 13.2], [1930, 11.6], [1940, 8.8],
+                    [1950, 6.9], [1960, 5.4], [1970, 4.7], [1980, 6.2], [1990, 7.9],
+                    [2000, 11.1], [2010, 13]];
+                    */
+var data = [ [1950, 6.9], [1960, 5.4], [1970, 4.7], [1980, 6.2], [1990, 7.9],
+                    [2000, 11.1], [2010, 13]];
+
+
+    x.domain([start_year, end_year]);
+    var xScale = d3.scale.linear()
+        .domain([start_year, end_year])
+        .range([0, width]);
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + 0 + ")")
+        .call(xAxis);
+
+        var g = svg.append("g").attr("class","journal");
+
+        var circles = g.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle");
+
+        var text = g.selectAll("text")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("class", "labels");
+
+        var rScale = d3.scale.linear()
+            .domain([0, 13])
+            .range([1, 40]);
+
+        circles
+            .attr("cx", function(d, i) { return xScale(d[0]); })
+            .attr("cy", 75)
+            .attr("r", function(d) { return rScale(d[1]); })
+            .attr("class","value")
+            .style("fill", function(d) { return c(0); })
+            .text(function(d){ return "%" });
+
+        text
+            .attr("y", 75)
+            .attr("x",function(d, i) { return xScale(d[0])-10; })
+            .attr("class","value")
+            .style("fill", function(d) { return c(0); })
+            .text(function(d){ return d[1] + "%"; })
+            .style("display","none");
+
+        g.append("text")
+            .attr("y", 75)
+            .attr("x",width + 90)
+            .attr("class","label")
+            .text("Immigrants in the US")
+            .style("fill", function(d) { return c(0); })
+            .on("mouseover", mouseover)
+            .on("mouseout", mouseout);
+
+
+    function mouseover(p) {
+        var g = d3.select(this).node().parentNode;
+        d3.select(g).selectAll("circle").style("display","none");
+        d3.select(g).selectAll("text.value").style("display","block");
+    }
+
+    function mouseout(p) {
+        var g = d3.select(this).node().parentNode;
+        d3.select(g).selectAll("circle").style("display","block");
+        d3.select(g).selectAll("text.value").style("display","none");
+    }
+
+</script>
+
+</body>
+</html>
