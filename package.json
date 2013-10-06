@@ -6,6 +6,7 @@
     "js-yaml": "*",
     "jsdom": "*",
     "request": "*",
+    "stylus": "*",
     "underscore": "*"
   },
   "repository": "git://github.com/bsstoner/congress",

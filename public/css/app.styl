@@ -1,0 +1,134 @@
+@import 'global.styl'
+
+@font-face {
+  font-family: 'Pictos';
+  src: url('../fonts/pictos-web.eot');
+  src: local('☺'), url('../fonts/pictos-web.woff') format('woff'), url('../fonts/pictos-web.ttf') format('truetype'), url('../fonts/pictos-web.svg#webfontIyfZbseF') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body
+  background $darker-blue
+
+body
+  margin 0
+  padding 0
+  font 14px/1.231 Helvetica, Arial, sans-serif
+  -webkit-font-smoothing antialiased
+  -moz-font-smoothing antialiased
+  width 100%
+  position relative
+
+html.infographic-page,
+html.infographic-page body
+  color $gray
+  background $darker-blue
+  width 100%
+  height 100%
+
+.icon
+  font-family "Pictos"
+  font-weight normal !important
+
+.senate
+  position absolute
+  top 0
+  left 0
+  height 48%
+  width 100%
+
+.population
+  position absolute
+  bottom 0
+  left 0
+  height 48%
+  width 100%
+
+.scroll-bar
+  position absolute
+  width 100%
+  top 48%
+  height 50px
+  left 0
+
+.sidebar
+  padding 30px
+
+.sidebar h2
+  font-size 18px
+  font-weight 1000
+  letter-spacing -1px
+  margin 0 0 30px
+
+.sidebar ul
+  list-style none
+  padding 0
+  margin 0
+  width 200px
+
+.sidebar ul li
+  display block
+  padding 0
+  margin 0 0 15px
+
+.sidebar .bar-outer
+  position relative
+  background $dark-blue
+  height 2px
+  width 100%
+  margin-bottom 5px
+
+.sidebar .bar-inner
+  position absolute
+  left 0
+  top 0
+  width 0
+  height 2px
+  background $red
+  transitioned(0.2s linear width)
+
+.sidebar p
+  margin 0
+  padding 0
+
+.sidebar .percent
+  color $red
+  padding 0 5px 0 0
+
+.scroll-bar
+  position absolute
+  top 48%
+  left 0
+  width 100%
+  height 40px
+  padding 0 30px
+
+.scroll-bar .play-button
+  position relative
+  height 40px
+  width 40px
+  background $white
+  text-align center
+  line-height 44px
+  font-size 18px
+
+.scroll-bar-track
+  position absolute
+  left 80px
+  top 0
+  background $dark-blue
+  height 40px
+  width 500px
+
+.scroll-bar-handle
+  background $white
+  height 40px
+  width 80px
+  font-size 18px
+  font-weight 900
+  letter-spacing -1px
+  line-height 40px
+  text-align center
+

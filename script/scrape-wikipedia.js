@@ -1,10 +1,11 @@
-var input = require('../data/legislators-historical')
+var input = require('../data/legislators-historical-c')
   , fs = require('fs')
   , async = require('async')
   , jsdom = require('jsdom')
   , request = require('request')
 
   , utils = require('./utils')
+  , startFrom = 0
   , counter = 0;
 
 var downloadImage = function(uri, filename){
@@ -24,7 +25,7 @@ async.forEachSeries(input, function(record,fn){
   counter++;
   console.log("starting ", counter, " out of ",input.length);
 
-  if(utils.isSenator(record) && hasWikipediaLink(record)){
+  if(counter >= startFrom && utils.isSenator(record) && hasWikipediaLink(record)){
     var wUrl = 'https://en.wikipedia.org/wiki/' + record.id.wikipedia.replace(' ','_');
     jsdom.env(wUrl,['http://code.jquery.com/jquery-latest.min.js'],function(err,window){
       var $ = window.jQuery
