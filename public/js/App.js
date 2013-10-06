@@ -18,7 +18,7 @@ var app = {
     });
 
     this.scaleToWindow();
-    this.setYear(1900);
+    this.setYear(1950);
 
     // event handlers:
     $(window).resize(_.bind(this._onWindowResized,this));

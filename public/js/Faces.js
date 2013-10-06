@@ -32,7 +32,7 @@ Faces.prototype = {
     this.$faces = this.$el.find('li');
   },
 
-  sortOrder: ['white','black','asian','hispanic','natives'],
+  sortOrder: ['white','black','asian','hispanic','natives','american_indian'],
 
   sortByEthnicity: function(data){
     return _.sortBy(data,function(f){
