@@ -9,6 +9,9 @@ Senate.prototype = {
   startYear: 1789,
   chartHeight: 20,
 
+  imagePrefix: 'images/senate/',
+  imageExtension: '.jpg',
+
   render: function(){
     this.chart = new BarChart({
       el: this.$el.find('.bar-chart')
@@ -32,7 +35,6 @@ Senate.prototype = {
     this.chart.setData(this.getChartDataForYear(year));
     this.faces.setData(this.getFaceDataForYear(year));
   },
-
 
 
   getYearIdx: function(year){
@@ -81,7 +83,7 @@ Senate.prototype = {
     _.forEach(ids,function(id){
       var senatorData
       data.push({
-        imageId: id,
+        image: this.imagePrefix + id + this.imageExtension,
         ethnicity: this.getSenator(id).ethnicity
       });
     },this);

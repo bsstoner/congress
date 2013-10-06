@@ -9,9 +9,6 @@ Faces.prototype = {
   rows: 5,
   cols: 20,
 
-  imgPrefix: 'images/senate/',
-  imgExtension: '.jpg',
-
   render: function(){
     var numFaces = this.rows * this.cols
       , width = (1/this.cols)*100
@@ -35,14 +32,23 @@ Faces.prototype = {
     this.$faces = this.$el.find('li');
   },
 
+  sortOrder: ['white','black','asian','hispanic','natives'],
+
+  sortByEthnicity: function(data){
+    return _.sortBy(data,function(f){
+      return this.sortOrder.indexOf(f.ethnicity);
+    },this);
+  },
+
   setData: function(data){
+    data = this.sortByEthnicity(data);
+
     _.forEach(this.$faces,function(face,i){
       var faceData = data[i]
         , $face = $(this.$faces[i])
 
       if(faceData){
-        var img = faceData.imageId
-          , imgTag = (img) ? '<img src="' + this.imgPrefix + img + this.imgExtension + '" />' : '';
+        var imgTag = (faceData.image) ? '<img src="' + faceData.image + '" />' : '';
 
         $face.html(imgTag + '<div class="face-overlay ' + faceData.ethnicity + '"></div>');
       } else {

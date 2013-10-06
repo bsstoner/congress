@@ -24,7 +24,9 @@ var app = {
     $(window).resize(_.bind(this._onWindowResized,this));
     this.scrollbar.on('changed',_.bind(this._onScrollbarChanged,this));
 
-    this.scrollbar._startStop();
+    $('.flip-colors').bind('click',_.bind(this._onFlipColors,this));
+
+    //this.scrollbar._startStop();
   },
 
   scaleToWindow: function(){
@@ -54,6 +56,20 @@ var app = {
 
   _onWindowResized: function(e){
     this.scaleToWindow();
+  },
+
+  _onFlipColors: function(e){
+    e.preventDefault();
+
+    if(this._isFlipped){
+      $('body').removeClass('colors');
+      $('.flip-colors').text('Z');
+      this._isFlipped = false;
+    } else {
+      $('body').addClass('colors');
+      $('.flip-colors').text('U');
+      this._isFlipped = true;
+    }
   },
 
 

@@ -9,6 +9,16 @@ Population.prototype = {
   startYear: 1900,
   chartHeight: 20,
 
+  imageCounts: {
+    white: 100,
+    asian: 17,
+    black: 34,
+    hispanic: 16,
+    natives: 4
+  },
+  imagePrefix: 'images/population/',
+  imageExtension: '.jpg',
+
   render: function(){
     this.chart = new BarChart({
       el: this.$el.find('.bar-chart')
@@ -56,6 +66,13 @@ Population.prototype = {
     return this_data;
   },
 
+  getRandomImage: function(ethnicity){
+    var num = this.imageCounts[ethnicity]
+      , randomNum = Math.ceil(num * Math.random());
+
+    return this.imagePrefix + ethnicity + '/' + randomNum + this.imageExtension;
+  },
+
   getFaceDataForYear: function(year){
     var senators = senatorDataByYear[year - Senate.prototype.startYear] || {}
       , numSenators = 100//senators.senators && senators.senators.length || 0
@@ -67,14 +84,13 @@ Population.prototype = {
         var numFaces = Math.round(percentages[key] * numSenators);
         for(var i = 0; i < numFaces; i++){
           faces.push({
-            imageId: null,
+            image: this.getRandomImage(key),
             ethnicity: key
           });
         }
       }
     }
 
-    console.log(faces);
     return faces;
   }
 }
