@@ -25,7 +25,6 @@ Population.prototype = {
 
   getPopulationDataForYear: function(year){
     var idx = (year - this.startYear) / 10
-      , data = populationData[idx]
       , interpolated = this.interpolateData(populationData, idx);
 
     return interpolated || {};
@@ -33,17 +32,25 @@ Population.prototype = {
 
   interpolateData: function(data, idx) {
     var id0 = Math.floor(idx)
-      , idF = Math.ceil(idx)
+      , idF = (idx == id0)? id0 + 1 : Math.ceil(idx)
       , this_data = {};
     for (var i in data[id0]) {
-      this_data[i] = data[id0][i] + idx * (data[idF][i] - data[id0][i]);
+      if (i !== "year" && idF < 12) {
+        this_data[i] = data[id0][i] + (idx - id0) * (data[idF][i] - data[id0][i]);
+      } else {
+        this_data[i] = data[id0][i]; 
+      }
+
+    }
+    if (id0 > 9){ 
+      console.log(this_data);
     }
     return this_data;
   },
 
   getFaceDataForYear: function(year){
     var senators = senatorDataByYear[year - Senate.prototype.startYear] || {}
-      , numSenators = senators.senators && senators.senators.length || 0
+      , numSenators = 100//senators.senators && senators.senators.length || 0
       , percentages = this.getPopulationDataForYear(year)
       , faces = [];
 
