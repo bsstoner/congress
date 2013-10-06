@@ -21,7 +21,7 @@ var app = {
 
     // event handlers:
     $(window).resize(_.bind(this._onWindowResized,this));
-    //this.scrollbar.on('changed',_.bind(this._onScrollbarChanged,this));
+    this.scrollbar.on('changed',_.bind(this._onScrollbarChanged,this));
   },
 
   scaleToWindow: function(){
@@ -43,6 +43,10 @@ var app = {
   },
 
   setYear: function(year){
+    this.senate.setYear(year);
+    this.population.setYear(year);
+    this.scrollbar.setYear(year);
+
     var self = this;
     var int = setInterval(function () { 
       year += 1; 

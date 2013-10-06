@@ -36,8 +36,6 @@ Population.prototype = {
       , percentages = this.getPopulationDataForYear(year)
       , faces = [];
 
-    console.log(senators,numSenators,percentages);
-
     for(var key in percentages){
       if(key !== 'year'){
         var numFaces = Math.floor(percentages[key] * numSenators);
@@ -49,8 +47,6 @@ Population.prototype = {
         }
       }
     }
-
-    console.log(faces);
 
     return faces;
   }

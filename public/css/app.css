@@ -127,8 +127,13 @@ html.infographic-page body {
   background: #313438;
   height: 40px;
   width: 500px;
+  cursor: pointer;
 }
 .scroll-bar-handle {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
   background: #fffffe;
   height: 40px;
   width: 80px;
@@ -137,6 +142,7 @@ html.infographic-page body {
   letter-spacing: -1px;
   line-height: 40px;
   text-align: center;
+  cursor: pointer;
 }
 /* Faces */
 .faces {
