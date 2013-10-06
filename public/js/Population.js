@@ -7,6 +7,7 @@ var Population = function(ops){
 Population.prototype = {
 
   startYear: 1900,
+  chartHeight: 20,
 
   render: function(){
     this.chart = new BarChart({
@@ -16,6 +17,15 @@ Population.prototype = {
     this.faces = new Faces({
       el: this.$el.find('.faces')
     });
+  },
+
+  updateSize: function(height,top){
+    this.$el.css({
+      height: height + 'px',
+      top: top + 'px'
+    });
+
+    this.faces.updateSize(height - this.chartHeight);
   },
 
   setYear: function(year){
@@ -34,17 +44,15 @@ Population.prototype = {
     var id0 = Math.floor(idx)
       , idF = (idx == id0)? id0 + 1 : Math.ceil(idx)
       , this_data = {};
+
     for (var i in data[id0]) {
       if (i !== "year" && idF < 12) {
         this_data[i] = data[id0][i] + (idx - id0) * (data[idF][i] - data[id0][i]);
       } else {
         this_data[i] = data[id0][i]; 
       }
+    }
 
-    }
-    if (id0 > 9){ 
-      console.log(this_data);
-    }
     return this_data;
   },
 
@@ -56,7 +64,7 @@ Population.prototype = {
 
     for(var key in percentages){
       if(key !== 'year'){
-        var numFaces = Math.floor(percentages[key] * numSenators);
+        var numFaces = Math.round(percentages[key] * numSenators);
         for(var i = 0; i < numFaces; i++){
           faces.push({
             imageId: null,
@@ -66,6 +74,7 @@ Population.prototype = {
       }
     }
 
+    console.log(faces);
     return faces;
   }
 }

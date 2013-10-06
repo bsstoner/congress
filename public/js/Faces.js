@@ -59,10 +59,10 @@ Faces.prototype = {
     }
   },
 
-  updateSize: function(w,h){
+  updateSize: function(h,top){
     this.$el.css({
-      width: w + 'px',
-      height: h + 'px'
+      height: h + 'px',
+      top: (top || 0) + 'px'
     });
   }
 

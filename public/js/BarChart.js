@@ -30,44 +30,26 @@ BarChart.prototype = {
 
     _.forEach(this.races,function(race){
       this.$list.append([
-        '<li class="',race.id,'">',
-          '<div class="bar-outer">',
-            '<div class="bar-inner"></div>',
-          '</div>',
-          '<p><span class="percent"></span>',race.label,'</p>',
-        '</li>'
+        '<li class="',race.id,'"></li>'
       ].join(""));
     },this);
 
-    this.$percents = this.$el.find('.percent');
-    this.$bars = this.$el.find('.bar-inner');
-
-    this.height = this.$el.innerHeight();
+    this.$bars = this.$el.find('li');
   },
 
   setData: function(data){
     _.forEach(this.races,function(race,i){
-      var pct = data[race.id] || 0;
+      var pct = data[race.id] || 0
+        , $bar = $(this.$bars[i]);
+
       pct = Math.round(pct * 100);
 
-      $(this.$percents[i]).text(pct + '%');
+      this.$bars[i].className = race.id;
+
       $(this.$bars[i]).css({
         width: pct + '%'
       });
     },this);
-  },
-
-  updateSize: function(w,h){
-    this.availableHeight = h;
-    this.centerVertically();
-  },
-
-  centerVertically: function(){
-    var margin = (this.availableHeight - this.height) / 2;
-
-    this.$el.css({
-      'margin-top': + margin
-    });
   }
 
 }

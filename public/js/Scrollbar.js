@@ -25,11 +25,14 @@ Scrollbar.prototype = {
   startYear: 1900,
   endYear: 2010,
 
-  trackLeftMargin: 70,
+  trackLeftMargin: 40,
   trackRightMargin: 0,
 
-  updateSize: function(w,h){
-    this.top = this.$el.offset().top;
+  updateSize: function(w,top){
+    this.$el.css({
+      top: top + 'px'
+    });
+
     this.width = (w - this.trackLeftMargin - this.trackRightMargin);
     this.maxPct = 100 - ((this.handleWidth / this.width)*100);
     this.scrollableWidth = this.width * (this.maxPct/100);

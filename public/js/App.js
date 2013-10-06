@@ -2,7 +2,7 @@ var app = {
 
   sidebarWidth: 0,
   scrollbarHeight: 40,
-  headerH: 50,
+  headerHeight: 50,
 
   init: function(){
     this.senate = new Senate({
@@ -29,20 +29,17 @@ var app = {
 
   scaleToWindow: function(){
     var w = this.wWidth()
-      , h = this.wHeight() - this.headerH
-      , facesWidth = w - this.sidebarWidth
-      , facesHeight = (h - this.scrollbarHeight) / 2;
+      , h = this.wHeight()
+      , sectionHeight = (h - this.headerHeight - this.scrollbarHeight) / 2
 
-    this.population.$el.css({ height: facesHeight + 'px', top: (this.headerH + facesHeight + this.scrollbarHeight) + 'px' });
-    this.senate.$el.css({ height: facesHeight + 'px', top: this.headerH + "px"});
-    this.scrollbar.$el.css({ top: facesHeight + 'px', top: facesHeight + this.headerH + "px"});
+      , senateTop = this.headerHeight
+      , scrollTop = this.headerHeight + sectionHeight
+      , populationTop = scrollTop + this.scrollHeight;
 
-    this.senate.chart.updateSize(w,facesHeight);
-    this.senate.faces.updateSize(facesWidth,facesHeight);
-    this.population.chart.updateSize(w,facesHeight);
-    this.population.faces.updateSize(facesWidth,facesHeight);
+    this.senate.updateSize(sectionHeight,senateTop);
+    this.population.updateSize(sectionHeight,populationTop);
 
-    this.scrollbar.updateSize(w,this.scrollbarHeight);
+    this.scrollbar.updateSize(w,scrollTop);
   },
 
   setYear: function(year){

@@ -7,6 +7,7 @@ var Senate = function(ops){
 Senate.prototype = {
 
   startYear: 1789,
+  chartHeight: 20,
 
   render: function(){
     this.chart = new BarChart({
@@ -16,6 +17,15 @@ Senate.prototype = {
     this.faces = new Faces({
       el: this.$el.find('.faces')
     });
+  },
+
+  updateSize: function(height,top){
+    this.$el.css({
+      height: height + 'px',
+      top: top + 'px'
+    });
+
+    this.faces.updateSize(height - this.chartHeight,this.chartHeight);
   },
 
   setYear: function(year){
