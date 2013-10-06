@@ -114,7 +114,7 @@ header h1 {
   margin: 0;
   display: block;
 }
-header ul {
+header .right-menu {
   position: absolute;
   right: 15px;
   list-style: none;
@@ -123,15 +123,43 @@ header ul {
   margin: 0;
   height: 50px;
 }
-header ul li {
+header .right-menu li {
   display: block;
   padding: 0;
   margin: 0;
 }
-header ul li a {
+header .right-menu li a {
   display: block;
   position: relative;
   text-align: center;
+}
+header .legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 60px;
+}
+header .legend li {
+  padding: 0;
+  margin: 0 5px 0 0;
+  display: block;
+  position: relative;
+  float: left;
+  color: #5d5f61;
+  font-size: 12px;
+  line-height: 50px;
+}
+header .legend li .color {
+  width: 14px;
+  height: 14px;
+  display: block;
+  margin: 18px 5px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  border-radius: 14px;
+  float: left;
 }
 /* BarChart */
 .bar-chart {
