@@ -6,7 +6,7 @@ var input = require('../data/senators-lite')
   , jsdom = require('jsdom')
 
   , counter = 0
-  , startFrom = 1372;
+  , startFrom = 1800;
 
 var downloadImage = function(uri, filename){
   request.head(uri, function(err, res, body){
