@@ -17,7 +17,7 @@ var app = {
     });
 
     this.scaleToWindow();
-    this.setYear(2000);
+    this.setYear(1950);
 
     // event handlers:
     $(window).resize(_.bind(this._onWindowResized,this));
@@ -46,6 +46,16 @@ var app = {
     this.senate.setYear(year);
     this.population.setYear(year);
     this.scrollbar.setYear(year);
+
+    /*
+    var self = this;
+    var int = setInterval(function () { 
+      year += 1; 
+      self.senate.setYear(year);
+      self.population.setYear(year);
+      if (year > 2010) window.clearInterval(int);      
+    } , 500);
+    */
   },
 
   _onScrollbarChanged: function(year){
