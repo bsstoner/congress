@@ -26,7 +26,6 @@ Faces.prototype = {
   },
 
   setData: function(data){
-    console.log(data);
     _.forEach(this.$faces,function(face,i){
       var faceData = data[i]
         , $face = $(this.$faces[i])

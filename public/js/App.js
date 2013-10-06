@@ -17,7 +17,7 @@ var app = {
     });
 
     this.scaleToWindow();
-    this.setYear(1900);
+    this.setYear(1950);
 
     // event handlers:
     $(window).resize(_.bind(this._onWindowResized,this));
@@ -44,11 +44,11 @@ var app = {
 
   setYear: function(year){
     var self = this;
-    setInterval(function () { 
-      console.log(year);
+    var int = setInterval(function () { 
       year += 1; 
       self.senate.setYear(year);
       self.population.setYear(year);
+      if (year > 2010) window.clearInterval(int);      
     } , 500);
   },
 
