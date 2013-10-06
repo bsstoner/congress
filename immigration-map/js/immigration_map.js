@@ -42,6 +42,32 @@ var gradcolors = [{ "offset": "0%", "stopcolor": "rgb(198, 219, 239)", "stopopac
 			.style("stop-color", function(d) { return d.stopcolor; })
 			.style("stop-opacity", function(d) { return d.stopopacity; });
 
+	svg.append('svg:rect')
+		.attr('id','legend')
+		.attr('transform', 'translate(405, 505)')
+		.attr('width','150')
+		.attr('height','20')
+		.attr('fill', 'url(#legendgrad)')
+
+	svg.append('svg:text')
+		.attr('id','minlabel')
+		.attr('transform', 'translate(405, 500)')
+		.attr('font-family','Arial')
+		.text('0%')
+
+		svg.append('svg:text')
+		.attr('id','maxlabel')
+		.attr('transform', 'translate(555, 500)')
+		.attr('text-anchor', 'end')
+		.attr('font-family','Arial')
+		.text('>10%')
+
+		svg.append('svg:text')
+		.attr('id','legendlabel')
+		.attr('transform', 'translate(480, 545)')
+		.attr('text-anchor', 'middle')
+		.attr('font-family','Arial')
+		.text('Immigrant Population by county')
 }
 
 
