@@ -1,4 +1,5 @@
 var input = require('../data/legislators-historical')
+  , input2 = require('../data/legislators-current')
   , fs = require('fs')
   , async = require('async')
 
@@ -24,6 +25,8 @@ for(var i=startYear;i<=endYear;i++){
 // terms served:
 
 var counter = 0;
+
+input = input.concat(input2);
 
 input.forEach(function(record){
   counter++;
