@@ -59,6 +59,8 @@ var data = [ [1850, 9.7], [1860, 13.2], [1870, 14.4], [1880, 13.3], [1890, 14.8]
 var data = [ [1950, 6.9], [1960, 5.4], [1970, 4.7], [1980, 6.2], [1990, 7.9],
                     [2000, 11.1], [2010, 13]];
 
+var dataAbs = [ [1950, 10347395], [1960, 9738091], [1970, 9619302], [1980, 14079906], [1990, 19767316],
+                    [2000, 31107889], [2010, 40377757]];
 
     x.domain([start_year, end_year]);
     var xScale = d3.scale.linear()
@@ -77,44 +79,57 @@ var data = [ [1950, 6.9], [1960, 5.4], [1970, 4.7], [1980, 6.2], [1990, 7.9],
             .enter()
             .append("circle");
 
-        var text = g.selectAll("text")
+        var aScale = d3.scale.linear()
+            .domain([0, 13])
+            .range([10, 8000]);
+
+        var text = g.selectAll(".absolutes")
+            .data(dataAbs)
+            .enter().append("text")
+            .attr("class", "absolutes")
+            .style("fill", c[0])
+            .style("display", "none")
+            .attr("y", 79)
+            .attr("x",function(d, i) { return xScale(d[0]); })
+            .style("text-anchor", "middle")
+            .text(function(d){ return numberWithCommas(d[1]) ; })
+            .on("mouseout", mouseout);
+
+        circles
+            .attr("cx", function(d, i) { return xScale(d[0]); })
+            .attr("cy", 75)
+            .attr("r", function(d) { return Math.sqrt(aScale(d[1])) / Math.PI; })
+            .attr("class","value")
+            .style("fill", function(d) { return c(0); })
+            .text(function(d){ return "%" })
+            //.on("mousemove", revealAbsolutes);
+
+        var text = g.selectAll(".labels")
             .data(data)
             .enter()
             .append("text")
             .attr("class", "labels");
 
-        var rScale = d3.scale.linear()
-            .domain([0, 13])
-            .range([1, 40]);
-
-        circles
-            .attr("cx", function(d, i) { return xScale(d[0]); })
-            .attr("cy", 75)
-            .attr("r", function(d) { return rScale(d[1]); })
-            .attr("class","value")
-            .style("fill", function(d) { return c(0); })
-            .text(function(d){ return "%" });
-
         text
-            .attr("y", 75)
-            .attr("x",function(d, i) { return xScale(d[0])-10; })
+            .attr("y", 79)
+            .attr("x",function(d, i) { return xScale(d[0]); })
             .attr("class","value")
-            .style("fill", function(d) { return c(0); })
+            .style("fill", "#fff")//function(d) { return c(0); })
+            .style("text-anchor", "middle")
             .text(function(d){ return d[1] + "%"; })
-            .style("display","none");
+            .on("mousemove", revealAbsolutes);
 
-        g.append("text")
-            .attr("y", 75)
-            .attr("x",width + 90)
-            .attr("class","label")
-            .text("Immigrants in the US")
-            .style("fill", function(d) { return c(0); })
-            .on("mouseover", mouseover)
-            .on("mouseout", mouseout);
 
+    function revealAbsolutes() {
+        d3.selectAll(".absolutes").style("display", "block");
+        d3.selectAll(".label").style("display", "none");
+        d3.selectAll(".value").style("display", "none");
+    }
 
     function mouseover(p) {
         var g = d3.select(this).node().parentNode;
+        d3.selectAll(".absolutes").style("display", "block");
+        d3.selectAll(".label").style("display", "none");
         d3.select(g).selectAll("circle").style("display","none");
         d3.select(g).selectAll("text.value").style("display","block");
     }
@@ -122,7 +137,17 @@ var data = [ [1950, 6.9], [1960, 5.4], [1970, 4.7], [1980, 6.2], [1990, 7.9],
     function mouseout(p) {
         var g = d3.select(this).node().parentNode;
         d3.select(g).selectAll("circle").style("display","block");
-        d3.select(g).selectAll("text.value").style("display","none");
+        d3.selectAll(".value").style("display", "block");
+        d3.selectAll(".absolutes").style("display", "none");
+        d3.selectAll(".label").style("display", "block");
+    }
+
+    function numberWithCommas(x) {
+        x = x.toString();
+        var pattern = /(-?\d+)(\d{3})/;
+        while (pattern.test(x))
+            x = x.replace(pattern, "$1,$2");
+        return x;
     }
 
 </script>
