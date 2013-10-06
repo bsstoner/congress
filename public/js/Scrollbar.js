@@ -24,8 +24,12 @@ Scrollbar.prototype = {
 
   trackLeftMargin: 100,
   trackRightMargin: 30,
+  trackW: 0,
 
   updateSize: function(w,h){
+
+    this.trackW = w;
+
     this.top = this.$el.offset().top;
     this.width = (w - this.trackLeftMargin - this.trackRightMargin);
 
@@ -56,13 +60,13 @@ Scrollbar.prototype = {
     this.year = Math.min(this.year,this.endYear);
     this.year = Math.max(this.year,this.startYear);
 
-    pct = (pct || ((this.year - this.startYear) / (this.endYear - this.startYear))) * 100;
+    //pct = (pct || ((this.year - this.startYear) / (this.endYear - this.startYear))) * 100;
+    pct = (this.year - this.startYear)*100 / (this.endYear - this.startYear);
 
     this.$handle.css({
-      left: pct + '%'
-    });
-
-    this.$handle.text(this.year);
+      left: pct + '%',
+      transition: "left 1s"
+    }).text(this.year);
     this.trigger('changed',this.year);
   },
 
