@@ -23,6 +23,7 @@ body
 
 html.infographic-page,
 html.infographic-page body
+  overflow hidden
   color $gray
   background $darker-blue
   width 100%
@@ -36,51 +37,56 @@ html.infographic-page body
   position absolute
   top 0
   left 0
-  height 48%
+  height 0
   width 100%
 
 .population
   position absolute
   bottom 0
   left 0
-  height 48%
+  height 0
   width 100%
 
 .scroll-bar
   position absolute
   width 100%
-  top 48%
-  height 50px
+  height 40px
+  top 0
   left 0
 
-.sidebar
-  padding 30px
 
-.sidebar h2
+/* BarChart */
+
+.bar-chart
+  padding 0 30px
+
+.bar-chart h2
   font-size 18px
   font-weight 1000
   letter-spacing -1px
   margin 0 0 30px
 
-.sidebar ul
+.bar-chart ul
+  position relative
+  display block
   list-style none
   padding 0
   margin 0
   width 200px
 
-.sidebar ul li
+.bar-chart li
   display block
   padding 0
   margin 0 0 15px
 
-.sidebar .bar-outer
+.bar-chart .bar-outer
   position relative
   background $dark-blue
   height 2px
   width 100%
   margin-bottom 5px
 
-.sidebar .bar-inner
+.bar-chart .bar-inner
   position absolute
   left 0
   top 0
@@ -89,26 +95,30 @@ html.infographic-page body
   background $red
   transitioned(0.2s linear width)
 
-.sidebar p
+.bar-chart li p
   margin 0
   padding 0
 
-.sidebar .percent
+.bar-chart .percent
   color $red
   padding 0 5px 0 0
 
+
+
+/* ScrollBar */
+
 .scroll-bar
   position absolute
-  top 48%
   left 0
   width 100%
   height 40px
-  padding 0 30px
+  padding 0
 
 .scroll-bar .play-button
-  position relative
+  position absolute
   height 40px
   width 40px
+  left 30px
   background $white
   text-align center
   line-height 44px
@@ -116,7 +126,7 @@ html.infographic-page body
 
 .scroll-bar-track
   position absolute
-  left 80px
+  left 100px
   top 0
   background $dark-blue
   height 40px
@@ -131,4 +141,65 @@ html.infographic-page body
   letter-spacing -1px
   line-height 40px
   text-align center
+
+
+/* Faces */
+
+.faces
+  position absolute
+  top 0
+  left 250px
+  list-style none
+  padding 0
+  margin 0
+
+.faces li
+  display block
+  position relative
+  overflow hidden
+  float left
+  width 50px
+  height 50px
+  margin 0
+  padding 0
+  rounded(100px)
+
+.faces li img
+  display block
+  position relative
+  max-width 100%
+  width 100%
+  opacity 1
+  transitioned(0.3s linear opacity)
+  z-index 2
+
+.face-overlay
+  display block
+  position absolute
+  width 100%
+  height 100%
+  top 0
+  left 0
+  rounded(100px)
+  background $black
+  opacity 1
+  z-index 1
+
+.faces.show-dots li img
+  opacity 0
+
+.face-overlay.white
+  background $caucasian
+
+.face-overlay.asian
+  background $asian
+
+.face-overlay.nativeamerican
+  background $nativeamerican
+
+.face-overlay.black
+  background $black
+
+.face-overlay.hispanic
+  background $hispanic
 

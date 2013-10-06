@@ -4,6 +4,7 @@ var input = require('../data/legislators-historical')
 
   , utils = require('./utils')
   , years = []
+  , senators = {}
   , startYear = 1789
   , endYear = 2013;
 
@@ -26,28 +27,28 @@ var counter = 0;
 
 input.forEach(function(record){
   counter++;
-  //console.log(counter,"of",input.length);
 
   if(utils.isSenator(record)){
     var id = utils.getBestId(record)
       , servedYears = utils.getYearsServedInSenate(record);
 
+    senators[id] = {
+      name: record.name,
+      ethnicity: 'white'
+    };
+
     servedYears.forEach(function(yearNum){
       var year = years[yearNum - startYear];
 
-      console.log(yearNum,yearNum-startYear);
-
       if(year){
-        year.senators.push({
-          id: id,
-          name: record.name,
-          bio: record.bio
-        });
+        year.senators.push(id);
       }
     })
   }
 });
 
-var outStream = fs.createWriteStream("../public/data/senators-by-year.js");
+var byYearFile = fs.createWriteStream("../public/data/senators-by-year.js")
+  , senatorFile = fs.createWriteStream("../public/data/senators.js");
 
-outStream.write(JSON.stringify(years));
+senatorFile.write("var senatorData = " + JSON.stringify(senators));
+byYearFile.write("var senatorDataByYear = " + JSON.stringify(years));

@@ -11,26 +11,13 @@
   </head>
   <body>
     <div class="senate">
-      <div class="sidebar">
+      <div class="bar-chart">
         <h2>U.S. Senate</h2>
-        <ul>
-          <li class="white">
-            <div class="bar-outer">
-              <div class="bar-inner" style="width:10%;"></div>
-            </div>
-            <p><span class="percent">10%</span>White</p>
-          </li>
-          <li class="black">
-            <div class="bar-outer">
-              <div class="bar-inner"></div>
-            </div>
-            <p><span class="percent">0%</span>White</p>
-          </li>
-        </ul>
+        <ul></ul>
       </div>
-      <div class="faces">
+      <ul class="faces">
 
-      </div>
+      </ul>
     </div>
     <div class="scroll-bar">
       <div class="play-button icon">4</div>
@@ -41,30 +28,25 @@
       </div>
     </div>
     <div class="population">
-      <div class="sidebar">
+      <div class="bar-chart">
         <h2>U.S. Population</h2>
-        <ul>
-          <li class="white">
-            <div class="bar-outer">
-              <div class="bar-inner"></div>
-            </div>
-            <p><span class="percent">0%</span>White</p>
-          </li>
-          <li class="black">
-            <div class="bar-outer">
-              <div class="bar-inner"></div>
-            </div>
-            <p><span class="percent">0%</span>White</p>
-          </li>
-        </ul>
+        <ul></ul>
       </div>
-      <div class="faces">
+      <ul class="faces">
 
-      </div>
+      </ul>
     </div>
 
-
+    <script src="data/senators.js"></script>
+    <script src="data/senators-by-year.js"></script>
+    <script src="data/population.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.2.2/underscore-min.js"></script>
+    <script src="js/App.js"></script>
+    <script src="js/BarChart.js"></script>
+    <script src="js/Faces.js"></script>
+    <script src="js/Scrollbar.js"></script>
+    <script src="js/Senate.js"></script>
+    <script src="js/Population.js"></script>
   </body>
 </html>
