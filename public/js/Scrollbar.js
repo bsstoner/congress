@@ -125,7 +125,10 @@ Scrollbar.prototype = {
   },
 
   _addOneYear: function() {
-    if (!this.isPlaying) return;
+    if (!this.isPlaying){
+      this.$play.text('4');
+      return;
+    }
     this.setYear(this.year + 1);
     window.setTimeout(_.bind(this._addOneYear, this), 500);
   },
@@ -134,6 +137,7 @@ Scrollbar.prototype = {
       if (this.isPlaying) {
         this.isPlaying = false;
       } else {
+        this.$play.text('5');
         this.isPlaying = true;
         this._addOneYear();
       }
