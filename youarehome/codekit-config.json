@@ -11,14 +11,14 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/css\/one-page-wonder.css" : {
+    "\/index.html" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/one-page-wonder.css",
+      "inputAbbreviatedPath" : "\/index.html",
       "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
+      "fileType" : 2048
     },
     "\/js\/jquery.js" : {
       "ignoreWasSetByUser" : 0,
@@ -31,14 +31,25 @@
       "outputAbbreviatedPath" : "\/js\/jquery-ck.js",
       "fileType" : 64
     },
-    "\/index.html" : {
+    "\/css\/one-page-wonder.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/index.html",
+      "inputAbbreviatedPath" : "\/css\/one-page-wonder.css",
       "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
+      "fileType" : 16
+    },
+    "\/img\/flag.jpg" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/img\/flag.jpg",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/img\/flag.jpg",
+      "initialSize" : 716353,
+      "fileType" : 4096
     },
     "\/js\/bootstrap.js" : {
       "ignoreWasSetByUser" : 0,
