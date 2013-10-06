@@ -10,6 +10,24 @@ body {
 	text-align: center;
 }
 
+#container {
+	width: 100%;
+}
+
+#about {
+	background: url(../images/banner.png);
+	color: #fff;
+	width: 100%;
+	padding: 100px 0px;
+}
+
+.lead {
+	width: 950px;
+	margin: 0 auto;
+	font-size: 32px;
+	text-align: center;
+}
+
 .headline {
 	padding: 120px 0;
 }
@@ -27,10 +45,11 @@ body {
 }
 
 .featurette-divider {
-	margin: 80px 0;
+	margin: 280px 0;
 }
 .featurette {
 	overflow: hidden; 
+	width: 100%;
 }
 
 .featurette-image.pull-left {
@@ -42,10 +61,34 @@ body {
 
 .featurette-heading {
 	font-size: 50px;
+	margin: 40px 40px;
+	text-align: center;
+}
+
+.on-top {
+	position: relative; 
+	height: 100%;
+	vertical-align: middle;
+	top: 50%;
+	z-index: 2;
+}
+
+#bubble-chart {
+	width: 1040px;		
+	margin: 0 auto;
 }
 
 .flag {
-	background: url(img/flag.jpg)
+	/*background: url();
+	background-size: 100%;
+	background-position: 0px -400px;*/
+	overflow: visible;
+	width: 100%;
+}
+
+.flag-img {
+	width: 100%;
+	height: 100%;
 }
 
 footer {
@@ -61,7 +104,7 @@ footer {
 .featurette-divider {margin: 50px 0;}
 .featurette-image.pull-left {margin-right: 20px;}
 .featurette-image.pull-right {margin-left: 20px;}
-.featurette-heading {font-size: 35px;}
+.featurette-heading {font-size: 35px;;}
 
 }
 
