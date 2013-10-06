@@ -43,6 +43,10 @@ Faces.prototype = {
   setData: function(data){
     data = this.sortByEthnicity(data);
 
+    if(data.length>100){
+      data.splice(0,data.length - 100);
+    }
+
     _.forEach(this.$faces,function(face,i){
       var faceData = data[i]
         , $face = $(this.$faces[i])

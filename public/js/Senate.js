@@ -81,10 +81,11 @@ Senate.prototype = {
       , data = [];
 
     _.forEach(ids,function(id){
-      var senatorData
+      var sen = this.getSenator(id);
+
       data.push({
         image: this.imagePrefix + id + this.imageExtension,
-        ethnicity: this.getSenator(id).ethnicity
+        ethnicity: sen.ethnicity
       });
     },this);
 
