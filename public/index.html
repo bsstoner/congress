@@ -7,90 +7,110 @@
     <meta name="author" content="">
 
     <title>You Are Home</title>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS for the 'One Page Wonder' Template -->
     <link href="css/one-page-wonder.css" rel="stylesheet">
+    <style type="text/css">
+      body{font-family: Arial, sans-serif;font-size:10px;}
+      .axis path,.axis line {fill: none;stroke:#b6b6b6;shape-rendering: crispEdges;}
+      .tick text{fill:#999;}
+      text.label{font-size:12px;font-weight:bold;cursor:pointer;}
+      text.value{font-size:12px;font-weight:bold;}
+      percentage.value{font-size:12px;font-weight:bold;}
+
+      #map {
+        width: 960px;
+        margin: 0 auto;
+      }
+
+      #header {
+        width: 100%;
+        text-align: center;
+        margin-bottom: -40px;
+      }
+
+      #header h3 {
+        font: normal 2em arial, sans-serif;
+        text-align: center;
+      }
+
+      .q0-9 { fill:rgb(247,251,255); }
+      .q1-9 { fill:rgb(222,235,247); }
+      .q2-9 { fill:rgb(198,219,239); }
+      .q3-9 { fill:rgb(158,202,225); }
+      .q4-9 { fill:rgb(107,174,214); }
+      .q5-9 { fill:rgb(66,146,198); }
+      .q6-9 { fill:rgb(33,113,181); }
+      .q7-9 { fill:rgb(8,81,156); }
+      .q8-9 { fill:rgb(8,48,107); }
+
+}
+
+
+    </style>
+    <script src="js/topojson.v0.min.js"></script>
+    <script src="js/queue.v1.min.js"></script>    
+
   </head>
 
   <body>
     <div class="header-image">
 
-      <div class="headline">
-        <div class="container">
-          <h1>You Are Home</h1>
-        </div>
-      </div>
-
     </div><!-- /header-image -->
 
-    <div class="container">
+    <div id="container">
 
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="featurette" id="about">
-        <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
-        <p class="lead"><strong>For every one who’s a valedictorian, there’s another 100 out there who weigh 130 pounds and they’ve got calves the size of cantaloupes because they’re hauling 75 pounds of marijuana across the desert.</strong><br><br>
-        – Representative Steve King (Iowa, 4th District)</p>
+      <div class="featurette row-fluid" id="about">
+        <div class="span4 lead">
+            <p class="lead"><strong>For every one who’s a valedictorian, there’s another 100 out there who weigh 130 pounds and they’ve got calves the size of cantaloupes because they’re hauling 75 pounds of marijuana across the desert.</strong><br><br>– Representative Steve King (Iowa, 4th District)</p>
+            <a class="btn btn-lg btn-primary" href="congress.html">LEARN MORE</a>
+        </div>
       </div>
 
       <hr class="featurette-divider">
 
       <div class="featurette" id="services">
-        <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
-        <h2 class="featurette-heading"><span class="text-muted">This doesn’t feel like home.&nbsp;</span>But you are home.</h2>
+        <!--img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500"-->
+        <h2 class="featurette-heading"><span class="text-muted">This may not feel like home.&nbsp;</span>But it is home.</h2>
       </div>
 
       <hr class="featurette-divider">
 
       <div class="featurette" id="contact">
-        <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
         <h2 class="featurette-heading">The percentage of immigrants living in the US has doubled in the past 50 years.</h2>
+        <div id="bubble-chart"></div>
       </div>
-
-      <hr class="featurette-divider">      
-
-      <div class="featurette" id="contact">
-        <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
-        <h2 class="featurette-heading">OMG DOTS</h2>
-      </div>
-
       <hr class="featurette-divider">
 
       <div class="featurette" id="contact">
-        <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
         <h2 class="featurette-heading">Today, immigrants make up 13% of our country.</h2>
+        <div id="map"></div>
       </div>
-
-      <hr class="featurette-divider">
-
-      <div class="featurette" id="contact">
-        <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
-        <h2 class="featurette-heading">OMG MAPS</h2>
-      </div>             
 
       <hr class="featurette-divider">
 
       <div class="featurette flag" id="contact">
-        <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
-        <h2 class="featurette-heading">So make it feel like home.</h2>
+        <h2 class="featurette-heading on-top">So make it feel like home.</h2>
+        <img class="flag-img" src="http://www.progressohio.org/flag-and-immigrants1.jpg">
       </div>    
 
-      <hr class="featurette-divider">
+      <!--hr class="featurette-divider"-->
 
       <div class="featurette" id="contact">
-        <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
-        <h2 class="featurette-heading"><span class="text-muted">It's your system.</span><br>Know it.<br> Work it.<br>Own it.</h2>
+        <h2 class="featurette-heading"><span class="text-muted">It's our system.</span><br>Know it.<br> Work it.<br>Own it.</h2>
+      </div>
+
+      <div>
+        <img class="flag-img" src="http://guardianlv.com/wp-content/uploads/2013/07/immigration-rally.jpg">
       </div>
 
       <hr class="featurette-divider">
 
       <div class="featurette" id="contact">
-        <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
         <h2 class="featurette-heading">Vote.<br>Volunteer.<br>Organize.<br>Run.<br><br>
         <a href="http://newamericanleaders.org/">The New American Leaders Project</a>
         </h2>
@@ -99,8 +119,8 @@
       <hr class="featurette-divider">
 
       <div class="featurette" id="contact">
-        <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
-        <h2 class="featurette-heading"><span class="text-muted">You&nbsp;are&nbsp;an&nbsp;immigrant&nbsp;</span> and<br>You are home.</h2>
+        <img class="flag-img" src="http://thinkprogress.org/wp-content/uploads/2013/01/immigrants.jpg">
+        <h2 class="featurette-heading"><span class="text-muted">You&nbsp;are&nbsp;an&nbsp;immigrant&nbsp;</span><p>and</p><br>You are home.</h2>
       </div>
 
       <!-- /END THE FEATURETTES -->
@@ -120,7 +140,8 @@
   <!-- javascript -->
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.js"></script>
-
+  <script src="js/Bubbles.js"></script>
+  <script src="js/Map.js"></script>
   </body>
 
 </html>

@@ -13,17 +13,7 @@ background-color: #fff;
 	font: normal 2em arial, sans-serif;
 	text-align: center;
 }
-/*
-.q0-9 { fill:rgb(198, 219, 239); }
-.q1-9 { fill:rgb(174, 197, 222); }
-.q2-9 { fill:rgb(150, 176, 206); }
-.q3-9 { fill:rgb(126, 154, 189); }
-.q4-9 { fill:rgb(103, 133, 173); }
-.q5-9 { fill:rgb(79, 112, 156); }
-.q6-9 { fill:rgb(55, 90, 140); }
-.q7-9 { fill:rgb(31, 69, 123); }
-.q8-9 { fill:rgb(8, 48, 107); }
-*/
+
 .q0-9 { fill:rgb(247,251,255); }
 .q1-9 { fill:rgb(222,235,247); }
 .q2-9 { fill:rgb(198,219,239); }
