@@ -38,11 +38,13 @@ BarChart.prototype = {
   },
 
   setData: function(data){
+    console.log(data);
+
     _.forEach(this.races,function(race,i){
       var pct = data[race.id] || 0
         , $bar = $(this.$bars[i]);
 
-      pct = Math.round(pct * 100);
+      pct = pct * 100;
 
       this.$bars[i].className = race.id;
 
