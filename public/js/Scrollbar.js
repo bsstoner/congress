@@ -9,6 +9,7 @@ var Scrollbar = function(ops){
   this.$handle.bind('mousedown',_.bind(this._onHandleMouseDown,this));
 
   this.handleWidth = this.$handle.innerWidth();
+  this.handleLeft = 0;
 
   this._onMouseMoveFn = _.bind(this._onMouseMove,this);
   this._onMouseUpFn = _.bind(this._onMouseUp,this);
@@ -21,19 +22,17 @@ var Scrollbar = function(ops){
 
 Scrollbar.prototype = {
 
-  startYear: 1800,
-  endYear: 2013,
+  startYear: 1900,
+  endYear: 2010,
 
   trackLeftMargin: 100,
   trackRightMargin: 30,
-  trackW: 0,
 
   updateSize: function(w,h){
-
-    this.trackW = w;
-
     this.top = this.$el.offset().top;
     this.width = (w - this.trackLeftMargin - this.trackRightMargin);
+    this.maxPct = 100 - ((this.handleWidth / this.width)*100);
+    this.scrollableWidth = this.width * (this.maxPct/100);
 
     this.$track.css({
       width: this.width + 'px'
@@ -62,17 +61,19 @@ Scrollbar.prototype = {
     this.year = Math.min(this.year,this.endYear);
     this.year = Math.max(this.year,this.startYear);
 
-    //pct = (pct || ((this.year - this.startYear) / (this.endYear - this.startYear))) * 100;
-    pct = (this.year - this.startYear)*100 / (this.endYear - this.startYear);
+    pct = ((this.year - this.startYear) * 100) / (this.endYear - this.startYear);
+
+    this.handleLeft = this.scrollableWidth * (pct/100);
 
     this.$handle.css({
-      left: pct + '%',
+      left: this.handleLeft + 'px'
     }).text(this.year);
+
     this.trigger('changed',this.year);
   },
 
   jumpToPercent: function(pct){
-    this.setYear(Math.round(((this.endYear - this.startYear) * pct) + this.startYear), pct);
+    this.setYear(Math.round(((this.endYear - this.startYear) * pct) + this.startYear));
   },
 
   _attachMouseDownEvents: function(){
@@ -86,30 +87,25 @@ Scrollbar.prototype = {
   },
 
   _toLocalPos: function(e){
-    return (e.touches) ? e.touches[0].pageX : e.clientX - this.trackLeftMargin - this._clickOffset;
+    return ((e.touches) ? e.touches[0].pageX : e.clientX) - this.trackLeftMargin - this._clickOffset;
   },
 
   _toPercent: function(e){
-    return this._toLocalPos(e) / this.width;
+    return this._toLocalPos(e) / this.scrollableWidth;
   },
 
   _onTrackMouseUp: function(e){
     this.isPlaying = false;
-    this._clickOffset = this.handleWidth / 2;
+    this._clickOffset = 0;
     this.jumpToPercent( this._toPercent(e) );
   },
 
   _onHandleMouseDown: function(e){
+    e.stopPropagation();
     this.isPlaying = false;
 
-    e.stopPropagation();
-
-    this._clickOffset = 0;
-
     var localX = this._toLocalPos(e)
-      , handleLeft = this.$handle.offset().left;
-
-    this._clickOffset = handleLeft - localX;
+    this._clickOffset = localX - this.handleLeft;
 
     this._attachMouseDownEvents();
   },
