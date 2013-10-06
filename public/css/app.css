@@ -18,6 +18,11 @@ body {
   width: 100%;
   position: relative;
 }
+header {
+  height: 50px;
+  background: #25282b;
+  width: 100%;
+}
 html.infographic-page,
 html.infographic-page body {
   overflow: hidden;
@@ -121,7 +126,7 @@ html.infographic-page body {
   position: absolute;
   height: 40px;
   width: 40px;
-  left: 30px;
+  left: 0px;
   cursor: pointer;
   background: #fffffe;
   text-align: center;
@@ -130,7 +135,7 @@ html.infographic-page body {
 }
 .scroll-bar-track {
   position: absolute;
-  left: 100px;
+  left: 70px;
   top: 0;
   background: #313438;
   height: 40px;
@@ -156,7 +161,7 @@ html.infographic-page body {
 .faces {
   position: absolute;
   top: 0;
-  left: 250px;
+  left: 0px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -177,7 +182,8 @@ html.infographic-page body {
   position: absolute;
   height: 130%;
   top: 0%;
-  left: 0;
+  left: -15%;
+  min-width: 120%;
   opacity: 1;
   z-index: 2;
 }

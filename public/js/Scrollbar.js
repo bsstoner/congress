@@ -25,8 +25,8 @@ Scrollbar.prototype = {
   startYear: 1900,
   endYear: 2010,
 
-  trackLeftMargin: 100,
-  trackRightMargin: 30,
+  trackLeftMargin: 70,
+  trackRightMargin: 0,
 
   updateSize: function(w,h){
     this.top = this.$el.offset().top;
