@@ -1,7 +1,7 @@
 var csv = require('csv')
   , fs = require('fs')
   , data = []
-  , input = '../data/historical.csv'
+  , input = '../data/population_data.csv'
   , output = '../public/data/population.js';
 
 csv()

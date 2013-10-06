@@ -15,6 +15,8 @@ var Scrollbar = function(ops){
 
   this._clickOffset = 0;
   this._callbacks = [];
+
+  this.$play.bind("click", _.bind(this._startStop, this));
 }
 
 Scrollbar.prototype = {
@@ -65,7 +67,6 @@ Scrollbar.prototype = {
 
     this.$handle.css({
       left: pct + '%',
-      transition: "left 1s"
     }).text(this.year);
     this.trigger('changed',this.year);
   },
@@ -93,11 +94,14 @@ Scrollbar.prototype = {
   },
 
   _onTrackMouseUp: function(e){
+    this.isPlaying = false;
     this._clickOffset = this.handleWidth / 2;
     this.jumpToPercent( this._toPercent(e) );
   },
 
   _onHandleMouseDown: function(e){
+    this.isPlaying = false;
+
     e.stopPropagation();
 
     this._clickOffset = 0;
@@ -119,5 +123,21 @@ Scrollbar.prototype = {
     e.stopPropagation();
     this._removeMouseDownEvents();
   },
+
+  _addOneYear: function() {
+    if (!this.isPlaying) return;
+    this.setYear(this.year + 1);
+    window.setTimeout(_.bind(this._addOneYear, this), 500);
+  },
+
+  _startStop: function(e) {
+      if (this.isPlaying) {
+        this.isPlaying = false;
+      } else {
+        this.isPlaying = true;
+        this._addOneYear();
+      }
+      return;
+  }
 
 }
