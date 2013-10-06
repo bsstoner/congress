@@ -6,20 +6,30 @@ var Faces = function(ops){
 
 Faces.prototype = {
 
-  numFaces: 50,
-  marginPercent: 0.10,
+  rows: 5,
+  cols: 20,
 
   imgPrefix: 'images/senate/',
   imgExtension: '.jpg',
 
   render: function(){
-    for(var i=0;i<this.numFaces;i++){
-      this.$el.append([
-        '<li>',
-          '<img src="" />',
-          '<div class="face-overlay white"></div>',
-        '</li>'
-      ].join(""));
+    var numFaces = this.rows * this.cols
+      , width = (1/this.cols)*100
+      , height = (1/this.rows)*100;
+
+    for(var i=0;i<this.rows;i++){
+      var top = i * height;
+
+      for(var j=0;j<this.cols;j++){
+        var left = j * width;
+
+        this.$el.append([
+          '<li style="width:' + width + '%;height:' + height + '%;top:' + top + '%;left:' + left + '%">',
+            '<img src="" />',
+            '<div class="face-overlay white"></div>',
+          '</li>'
+        ].join(""));
+      }
     }
 
     this.$faces = this.$el.find('li');
@@ -50,26 +60,9 @@ Faces.prototype = {
   },
 
   updateSize: function(w,h){
-    // figure out size/margin
-    // for each face based on
-    // the total available area:
-
-    var area = w*h
-      , faceArea = area / this.numFaces
-      , faceWidth = Math.sqrt(faceArea)
-      , faceMargin = faceWidth * this.marginPercent;
-
-    faceWidth = faceWidth - faceMargin;
-
     this.$el.css({
       width: w + 'px',
       height: h + 'px'
-    });
-
-    this.$faces.css({
-      width: faceWidth + 'px',
-      height: faceWidth + 'px',
-      margin: (faceMargin/2) + 'px'
     });
   }
 
