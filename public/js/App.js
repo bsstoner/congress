@@ -48,6 +48,7 @@ var app = {
       year += 1; 
       self.senate.setYear(year);
       self.population.setYear(year);
+      self.scrollbar.setYear(year);
       if (year > 2010) window.clearInterval(int);      
     } , 500);
   },
