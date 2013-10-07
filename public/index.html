@@ -48,6 +48,44 @@
       .q7-9 { fill:rgb(8,81,156); }
       .q8-9 { fill:rgb(8,48,107); }
 
+      .call-to-action {
+        font-size: 40px;
+        padding: 15px 60px;
+        font-weight: 900;
+        margin: 60px 0 30px;
+      }
+
+      .quote-author {
+        font-weight: 300;
+        font-style: italic;
+        font-size: 18px;
+        color: #ccc;
+      }
+
+      .lead {
+        font-size: 36px;
+        line-height: 40px;
+        position: relative;
+        z-index: 5;
+      }
+
+      .featurette {
+        position: relative;
+      }
+
+      .radial-gradient-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0,0,0,0.45) 1%, rgba(0,0,0,0.8) 100%);
+        background: -moz-radial-gradient(50% 50%, ellipse closest-corner, rgba(0,0,0,0.45) 1%, rgba(0,0,0,0.8) 100%);
+        background: -ms-radial-gradient(50% 50%, ellipse closest-corner, rgba(0,0,0,0.45) 1%, rgba(0,0,0,0.8) 100%);
+        background: radial-gradient(50% 50%, ellipse closest-corner, rgba(0,0,0,0.45) 1%, rgba(0,0,0,0.8) 100%);
+        z-index: 1;
+      }
+
 }
 
 
@@ -65,9 +103,10 @@
     <div id="container">
 
       <div class="featurette row-fluid" id="about">
+        <div class="radial-gradient-bg"></div>
         <div class="span4 lead">
-            <p class="lead"><strong>For every one who’s a valedictorian, there’s another 100 out there who weigh 130 pounds and they’ve got calves the size of cantaloupes because they’re hauling 75 pounds of marijuana across the desert.</strong><br><br>– Representative Steve King (Iowa, 4th District)</p>
-            <a class="btn btn-lg btn-primary" href="congress.html">LEARN MORE</a>
+          <p class="lead"><strong>For every one who’s a valedictorian, there’s another 100 out there who weigh 130 pounds and they’ve got calves the size of cantaloupes because they’re hauling 75 pounds of marijuana across the desert.</strong><br><span class="quote-author">– Representative Steve King (Iowa, 4th District)</span></p>
+            <a class="btn btn-lg btn-primary call-to-action" href="congress.html">LEARN MORE</a>
         </div>
       </div>
 
@@ -114,8 +153,11 @@
 
       <div class="featurette" id="contact">
         <h2 class="featurette-heading">Vote. Volunteer. Organize. Run.<br></h2>
-        <h2 class="featurette-heading"><span class="text-muted">You&nbsp;are&nbsp;an&nbsp;immigrant&nbsp;</span><p>and</p>You are home.<br><br><br>
-        <a href="http://newamericanleaders.org/">The New American Leaders Project</a>
+        <h2 class="featurette-heading"><span class="text-muted">You&nbsp;are&nbsp;an&nbsp;American&nbsp;</span><p>and</p>You are home.<br><br><br>
+          <p><a href="http://newamericanleaders.org/">The New American Leaders Project</a></p>
+          <p style="font-size:18px;"><a href="http://newamericanleaders.org/">www.newamericanleaders.org</a></p>
+          <p style="font-size:18px;">Follow us on <a href="http://twitter.com/NewAmericanLP" title="Follow us on Twitter">Twitter - @NewAmericanLP</a></p>
+          <p style="font-size:18px;">Find us on <a href="https://www.facebook.com/NewamericanLP" title="Find us on Facebook">Facebook</a></p>
         </h2>
       </div>
 
