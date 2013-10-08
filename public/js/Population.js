@@ -35,7 +35,7 @@ Population.prototype = {
       top: top + 'px'
     });
 
-    this.faces.updateSize(height - this.chartHeight);
+    this.faces.updateSize(height - this.chartHeight,this.chartHeight);
   },
 
   setYear: function(year){

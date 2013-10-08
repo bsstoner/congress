@@ -24,9 +24,10 @@ var app = {
     $(window).resize(_.bind(this._onWindowResized,this));
     this.scrollbar.on('changed',_.bind(this._onScrollbarChanged,this));
 
-    $('.flip-colors').bind('click',_.bind(this._onFlipColors,this));
+    $('.flip-dots').bind('click',_.bind(this._onFlipDots,this));
+    $('.flip-faces').bind('click',_.bind(this._onFlipFaces,this));
 
-    //this.scrollbar._startStop();
+    this.scrollbar._startStop();
   },
 
   scaleToWindow: function(){
@@ -58,18 +59,24 @@ var app = {
     this.scaleToWindow();
   },
 
-  _onFlipColors: function(e){
+  _onFlipDots: function(e){
     e.preventDefault();
 
-    if(this._isFlipped){
-      $('body').removeClass('colors');
-      $('.flip-colors').text('Z');
-      this._isFlipped = false;
-    } else {
-      $('body').addClass('colors');
-      $('.flip-colors').text('U');
-      this._isFlipped = true;
-    }
+    if(!this._isFlipped){ return; }
+    $('.active').removeClass('active');
+    $('body').removeClass('flipped');
+    $('.flip-dots').addClass('active');
+    this._isFlipped = false;
+  },
+
+  _onFlipFaces: function(e){
+    e.preventDefault();
+
+    if(this._isFlipped){ return; }
+    $('.active').removeClass('active');
+    $('body').addClass('flipped');
+    $('.flip-faces').addClass('active');
+    this._isFlipped = true;
   },
 
 

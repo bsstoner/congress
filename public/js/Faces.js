@@ -23,13 +23,14 @@ Faces.prototype = {
         this.$el.append([
           '<li style="width:' + width + '%;height:' + height + '%;top:' + top + '%;left:' + left + '%">',
             '<img src="" />',
-            '<div class="face-overlay white"></div>',
+            '<div class="face-dot white"></div>',
           '</li>'
         ].join(""));
       }
     }
 
     this.$faces = this.$el.find('li');
+    this.updateDotsSize();
   },
 
   sortOrder: ['white','black','asian','hispanic','natives','american_indian'],
@@ -43,8 +44,14 @@ Faces.prototype = {
   setData: function(data){
     data = this.sortByEthnicity(data);
 
+    // hack to massage the data so we always
+    // have 100...
     if(data.length>100){
       data.splice(0,data.length - 100);
+    }
+
+    while(data.length<100){
+      data.unshift({ ethnicity: 'white' });
     }
 
     _.forEach(this.$faces,function(face,i){
@@ -54,11 +61,13 @@ Faces.prototype = {
       if(faceData){
         var imgTag = (faceData.image) ? '<img src="' + faceData.image + '" />' : '';
 
-        $face.html(imgTag + '<div class="face-overlay ' + faceData.ethnicity + '"></div>');
+        $face.html(imgTag + '<div class="face-dot ' + faceData.ethnicity + '"></div>');
       } else {
         $face.empty();
       }
     },this);
+
+    this.updateDotsSize();
   },
 
   useDots: function(){
@@ -70,9 +79,20 @@ Faces.prototype = {
   },
 
   updateSize: function(h,top){
+    this.height = h;
+
     this.$el.css({
-      height: h + 'px',
+      height: this.height + 'px',
       top: (top || 0) + 'px'
+    });
+  },
+
+  updateDotsSize: function(){
+    var faceHeight = this.height / this.rows
+      , margin = (faceHeight / 2) - 12.5;
+
+    this.$el.find('.face-dot').css({
+      'margin': margin + 'px auto'
     });
   }
 

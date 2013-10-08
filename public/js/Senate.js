@@ -28,7 +28,7 @@ Senate.prototype = {
       top: top + 'px'
     });
 
-    this.faces.updateSize(height - this.chartHeight,this.chartHeight);
+    this.faces.updateSize(height - this.chartHeight);
   },
 
   setYear: function(year){

@@ -10,7 +10,7 @@
 
 html,
 body
-  background $darker-blue
+  background $dark-blue
 
 body
   margin 0
@@ -25,7 +25,7 @@ html.infographic-page,
 html.infographic-page body
   overflow hidden
   color $gray
-  background $darker-blue
+  background $dark-blue
   width 100%
   height 100%
 
@@ -82,6 +82,7 @@ header
   background $darker-blue
   width 100%
   color $gray
+  font-size 14px
 
 header a.back-button
   display block
@@ -92,10 +93,12 @@ header a.back-button
   color $gray
   text-decoration none
 
+header a.back-button .icon
+  padding-right 5px
+
 header a
-  font-size 18px
   text-decoration none
-  transitioned(0.3s linear color)
+  transitioned(0.1s linear color)
   line-height 50px
   height 50px
   color $gray
@@ -103,34 +106,41 @@ header a
 header a:hover
   color $white
 
+header .icon
+  font-size 18px
+
 header h1
   position relative
-  float left
   font-size 14px
-  letter-spacing -1px
+  float left
   line-height 50px
   padding 0 0 0 5px
   margin 0
   display block
 
-header .right-menu
-  position absolute
-  right 15px
+header .mode-toggle
+  position relative
+  float left
   list-style none
-  top 0
   padding 0
-  margin 0
+  margin 0 0 0 30px
   height 50px
 
-header .right-menu li
+header .mode-toggle li
   display block
+  float left
   padding 0
-  margin 0
+  margin 0 0 0 15px
 
-header .right-menu li a
+header .mode-toggle li a
   display block
   position relative
   text-align center
+  font-weight bold
+  font-size 14px
+
+header .mode-toggle li a.active
+  color $white
 
 header .legend
   list-style none
@@ -138,7 +148,7 @@ header .legend
   margin 0
   position absolute
   top 0
-  right 60px
+  right 15px
 
 header .legend li
   padding 0
@@ -147,7 +157,7 @@ header .legend li
   position relative
   float left
   color $gray
-  font-size 12px
+  font-size 14px
   line-height 50px
 
 header .legend li .color
@@ -170,9 +180,9 @@ header .legend li .color
   width 100%
   height 20px
 
-.population .bar-chart
-  bottom 0
+.senate .bar-chart
   top auto
+  bottom 0px
 
 .bar-chart h2
   position absolute
@@ -231,7 +241,7 @@ header .legend li .color
   position absolute
   left 40px
   top 0
-  background $dark-blue
+  background $darker-blue
   height 40px
   width 500px
   cursor pointer
@@ -267,6 +277,7 @@ header .legend li .color
   display block
   position absolute
   overflow hidden
+  text-align center
   margin 0
   padding 0
   top 0
@@ -281,24 +292,23 @@ header .legend li .color
   left 0
   max-width 100%
   width 100%
-  opacity 1
+  opacity 0
   transitioned(0.3s linear opacity)
   z-index 2
 
-.face-overlay
+.face-dot
   display block
-  position absolute
-  width 50%
-  height 50%
-  opacity 0
-  rounded(150px)
+  position relative
+  margin 0 auto
+  width 25px
+  height 25px
+  opacity 1
+  rounded(25px)
   transitioned(0.3s linear opacity)
-  top 25%
-  left 25%
   z-index 1
 
-.colors .face-overlay
-  opacity 1
-
-.colors .faces li img
+.flipped .face-dot
   opacity 0
+
+.flipped .faces li img
+  opacity 1

@@ -7,7 +7,9 @@
     <meta name="author" content="">
 
     <title>You Are Home</title>
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js"></script>
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic" />
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -15,7 +17,6 @@
     <!-- Custom CSS for the 'One Page Wonder' Template -->
     <link href="css/one-page-wonder.css" rel="stylesheet">
     <style type="text/css">
-      body{font-family: Arial, sans-serif;font-size:10px;}
       .axis path,.axis line {fill: none;stroke:#b6b6b6;shape-rendering: crispEdges;}
       .tick text{fill:#999;}
       text.label{font-size:12px;font-weight:bold;cursor:pointer;}
@@ -34,7 +35,6 @@
       }
 
       #header h3 {
-        font: normal 2em arial, sans-serif;
         text-align: center;
       }
 
@@ -49,24 +49,32 @@
       .q8-9 { fill:rgb(8,48,107); }
 
       .call-to-action {
-        font-size: 40px;
-        padding: 15px 60px;
-        font-weight: 900;
-        margin: 60px 0 30px;
-      }
-
-      .quote-author {
-        font-weight: 300;
-        font-style: italic;
-        font-size: 18px;
-        color: #ccc;
-      }
-
-      .lead {
         font-size: 36px;
-        line-height: 40px;
-        position: relative;
+        padding: 15px 45px;
+        font-weight: 900;
+        margin: 30px 0 30px;
+      }
+
+      .header-inner {
         z-index: 5;
+        position: relative;
+      }
+
+      .header-first {
+        font-size: 36px;
+        font-weight: 900;
+      }
+
+      .header-second {
+        font-size: 24px;
+        font-weight: 200;
+      }
+
+      .header-third {
+        margin-top: 60px;
+        font-size: 36px;
+        color: #ee4952;
+        font-style: italic;
       }
 
       .featurette {
@@ -86,9 +94,6 @@
         z-index: 1;
       }
 
-}
-
-
     </style>
     <script src="js/topojson.v0.min.js"></script>
     <script src="js/queue.v1.min.js"></script>    
@@ -104,9 +109,17 @@
 
       <div class="featurette row-fluid" id="about">
         <div class="radial-gradient-bg"></div>
-        <div class="span4 lead">
-          <p class="lead"><strong>For every one who’s a valedictorian, there’s another 100 out there who weigh 130 pounds and they’ve got calves the size of cantaloupes because they’re hauling 75 pounds of marijuana across the desert.</strong><br><span class="quote-author">– Representative Steve King (Iowa, 4th District)</span></p>
-            <a class="btn btn-lg btn-primary call-to-action" href="congress.html">LEARN MORE</a>
+        <div class="span4 lead header-inner">
+          <p class="header-first">
+            Ethnic minorities make up 30% of the US population.
+          </p>
+          <p class="header-second">
+            While our country is becoming increasingly diverse, our government continues to be dominated by older white men.
+          </p>
+          <p class="header-third">
+            Can we truly call this a representative democracy?
+          </p>
+          <a class="btn btn-lg btn-primary call-to-action" href="congress.html">See the Problem</a>
         </div>
       </div>
 
@@ -160,13 +173,6 @@
           <p style="font-size:18px;">Find us on <a href="https://www.facebook.com/NewamericanLP" title="Find us on Facebook">Facebook</a></p>
         </h2>
       </div>
-
-      <hr class="featurette-divider">
-
-      <div class="featurette" id="contact">
-        <img class="flag-img" src="http://thinkprogress.org/wp-content/uploads/2013/01/immigrants.jpg">
-      </div>
-
       <!-- /END THE FEATURETTES -->
 
     </div><!-- /container -->

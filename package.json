@@ -1,5 +1,5 @@
 {
-  "name": "congress",
+  "name": "youarehome",
   "version": "0.0.1",
   "dependencies": {
     "async": "*",
@@ -10,7 +10,7 @@
     "stylus": "*",
     "underscore": "*"
   },
-  "repository": "git://github.com/bsstoner/congress",
+  "repository": "git://github.com/bsstoner/youarehome",
   "engines": { "node": ">=0.8.x" }
 }
 
