@@ -12,7 +12,7 @@ Population.prototype = {
   imageCounts: {
     white: 100,
     asian: 17,
-    black: 34,
+    black: 32,
     hispanic: 16,
     natives: 4
   },
